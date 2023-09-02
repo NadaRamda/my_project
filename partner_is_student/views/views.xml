@@ -1,0 +1,30 @@
+<odoo>
+  <data>
+
+      <record id="res_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="vat" position="after">
+                    <field name="is_student"/>
+                    <field name="birth_date"/>
+                    <field name="age"/>
+
+                </field>
+            </field>
+        </record>
+
+      <record id="res_partner_view_search_is_student" model="ir.ui.view">
+            <field name="name">res.partner.search.inherit_is_student</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="before">
+                   <filter string="is_student" name="student" domain="[('is_student','=', True)]"/>
+                   <separator/>
+                </xpath>
+            </field>
+        </record>
+  </data>
+</odoo>
